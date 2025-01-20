@@ -17,7 +17,8 @@ fn divide(a: i64, b: i64) -> Result<i64, DivisionError> {
     let (r, overflow) = a.overflowing_div(b);
     if overflow {
         return Err(DivisionError::IntegerOverflow);
-    } else if r * b != a {
+    }
+    if a % b != 0 {
         return Err(DivisionError::NotDivisible);
     }
     Ok(r)
